@@ -24,7 +24,7 @@ BLUE = \033[0;94m
 CYAN = \033[0;96m
 
 all:		libraries $(NAME)
-			$(info Finished compiling so_long)
+			$(info Finished compiling cub3D)
 
 $(NAME):	$(OBJECTS)
 				$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(LIBRARIES) $(MLX_FLAGS)
