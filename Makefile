@@ -12,10 +12,11 @@ MLX42			:= ./MLX42/build
 
 SOURCES_DIR		:=	sources/
 SOURCES			:=	main.c\
+					raycaster_test.c\
 
 OBJECTS_DIR		:=	objects/
 OBJECTS			:= $(addprefix $(OBJECTS_DIR), $(SOURCES:.c=.o))
-HEADERS			:=	-I ./includes -I ./libraries/libft
+HEADERS			:= -I ./includes -I ./libraries/libft -I ./MLX42/include/MLX42
 
 NO_COLOR = \033[0;39m
 GREEN = \033[0;92m

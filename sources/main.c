@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/15 13:44:04 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/15 13:52:15 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/19 15:01:55 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "libft.h"
+#include "game_info.h"
 
 int	main(int argc, char **argv)
 {
@@ -22,6 +23,7 @@ int	main(int argc, char **argv)
 	if (!ft_strncmp(argv[1], "raycaster", 10))
 	{
 		printf("You have selected raycaster testing\n");
+		demo_game();
 	}
 	return (0);
 }
