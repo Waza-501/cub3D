@@ -13,8 +13,9 @@ LIBRARIES :=	$(LIBFT)/libft.a \
 				$(MLX42)/libmlx42.a \
 
 # Compiler and Flags
-CC			:=	cc
-CFLAGS		:=	-Wall -Werror -Wextra -g
+CC			:= cc
+CFLAGS		:= -Wall -Wextra #-Werror
+CFLAGS		+= -MMD -MP -g
 MLX_FLAGS	:= -Iinclude -ldl -lglfw -pthread -lm
 MAKEFLAGS	+= --no-print-directory
 INCLUDES	:= -I include -I $(LIBFT)/include -I $(ARENA)/include
@@ -25,7 +26,9 @@ OBJDIR := obj/
 INCDIR := include/
 
 # Sources
-SRCS :=	main.c \
+SRCS :=	has_extension.c \
+		main.c \
+		parse_map.c \
 
 # Objects and Dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))

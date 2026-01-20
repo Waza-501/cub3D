@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 13:44:04 by owhearn           #+#    #+#             */
-/*   Updated: 2026/01/20 16:34:48 by dbakker          ###   ########.fr       */
+/*   Created: 2026/01/20 16:13:43 by dbakker           #+#    #+#             */
+/*   Updated: 2026/01/20 16:45:19 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 #include "cub3D.h"
 
-int	main(int argc, char **argv)
+t_map *parse_map(const char *filename)
 {
-	char	*filename;
-	t_map	*map;
+	t_map *map;
+	int fd;
 
-	if (argc != 2)
-		return (0);
-	filename = argv[1];
-	if (!ft_strncmp(filename, "raycaster", 10))
+	if (has_extension(filename, MAP_EXTENSION) == false)
 	{
-		printf("You have selected raycaster testing\n");
+		printf("%s: Invalid file extension\n", filename);
+		return (NULL);
 	}
-	map = parse_map(filename);
-	if (map == NULL)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 	{
-		return (EXIT_FAILURE);
+		return (perror(filename), NULL);
 	}
-	return (0);
+	return (map);
 }

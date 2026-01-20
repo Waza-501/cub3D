@@ -63,6 +63,7 @@ SRCS :=	ft_atoi.c \
 		ft_lstmap.c \
 		get_next_line_utils.c \
 		get_next_line.c \
+		ft_strcmp.c \
 
 # Objects and dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))

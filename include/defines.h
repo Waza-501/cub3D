@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 13:44:04 by owhearn           #+#    #+#             */
-/*   Updated: 2026/01/20 16:34:48 by dbakker          ###   ########.fr       */
+/*   Created: 2026/01/20 15:59:32 by dbakker           #+#    #+#             */
+/*   Updated: 2026/01/20 16:00:14 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include "cub3D.h"
+#ifndef DEFINES_H
+# define DEFINES_H
 
-int	main(int argc, char **argv)
-{
-	char	*filename;
-	t_map	*map;
+# define MAP_EXTENSION "cub"
 
-	if (argc != 2)
-		return (0);
-	filename = argv[1];
-	if (!ft_strncmp(filename, "raycaster", 10))
-	{
-		printf("You have selected raycaster testing\n");
-	}
-	map = parse_map(filename);
-	if (map == NULL)
-	{
-		return (EXIT_FAILURE);
-	}
-	return (0);
-}
+#endif
