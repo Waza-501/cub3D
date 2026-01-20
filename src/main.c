@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 13:44:04 by owhearn           #+#    #+#             */
-/*   Updated: 2026/01/20 12:49:58 by dbakker          ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbakker <dbakker@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2026/01/15 13:44:04 by owhearn       #+#    #+#                 */
+/*   Updated: 2026/01/20 14:36:46 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <string.h>
 #include "arena.h"
 #include "libft.h"
+#include "game_info.h"
 
 // int	main(void)
 // {
@@ -60,7 +61,7 @@ int	main(int argc, char **argv)
 	if (!ft_strncmp(argv[1], "raycaster", 10))
 	{
 		printf("You have selected raycaster testing\n");
+		demo_game();
 	}
-
 	return (0);
 }

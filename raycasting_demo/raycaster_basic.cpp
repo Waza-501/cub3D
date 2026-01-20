@@ -6,10 +6,10 @@
 #include <cstdlib>
 #include "graphics.h"
 
-#define screenWidth 640
-#define screenHeight 480
-#define mapWidth 24
-#define mapHeight 24
+#define screenWidth 1920
+#define screenHeight 1080
+#define mapWidth 16
+#define mapHeight 12
 
 int worldMap[mapHeight][mapWidth] = 
 {
@@ -29,7 +29,7 @@ int worldMap[mapHeight][mapWidth] =
 
 int main(int /*argc*/, char */*argv*/[])
 {
-  double posX = 10, posY = 10;  //x and y start position
+  double posX = 3, posY = 7;  //x and y start position
   double dirX = -1, dirY = 0; //initial direction vector
   double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
 
