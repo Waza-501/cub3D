@@ -1,5 +1,5 @@
-#ifndef COLOURS_HPP
-# define COLOURS_HPP
+#ifndef COLORS_H
+# define COLORS_H
 
 # define BLACK "\e[0;30m"
 # define RED "\e[0;31m"
