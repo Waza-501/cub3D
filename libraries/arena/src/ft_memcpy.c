@@ -6,20 +6,20 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:52:57 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/16 15:53:48 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/20 12:48:00 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
 /**
- * @brief Copy @p `num` bytes pointed from @p `src` to @p `dest`.
+ * @brief Copy `num` bytes pointed from `src` to `dest`.
  *
- * @param[out]	dest	Pointer to the destination memory area.
- * @param[in]	src		Pointer to the source memory area.
- * @param[in]	num		Amount of bytes to copy from @p `src`.
+ * @param[out] dest Pointer to the destination memory area.
+ * @param[in] src Pointer to the source memory area.
+ * @param[in] num Amount of bytes to copy from `src`.
  *
- * @return Pointer to @p `dest`.
+ * @return Pointer to `dest`.
  *
  * @note Beware of overlapping memory areas.
  */

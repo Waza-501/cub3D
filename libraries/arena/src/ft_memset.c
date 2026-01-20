@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memset.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:40:01 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/16 15:41:55 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/20 12:48:10 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
 /**
- * @brief Write @p `num` bytes of @p `character` pointed to by @p `ptr`.
+ * @brief Write `num` bytes of `character` pointed to by `ptr`.
  *
- * @param[out]	ptr			Pointed area to fill.
- * @param[in]	character	Character to fill @p `ptr` with.
- * @param[in]	num			Amount of @p `character` to write.
+ * @param[out] ptr Pointed area to fill.
+ * @param[in] character Character to fill `ptr` with.
+ * @param[in] num Amount of `character` to write.
  *
- * @return Pointer to @p `ptr` with written @p `character`.
+ * @return Pointer to `ptr` with written `character`.
  */
 void	*ft_memset(void *ptr, int character, size_t num)
 {

@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:44:04 by owhearn           #+#    #+#             */
-/*   Updated: 2026/01/16 16:30:44 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/20 12:49:58 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,27 @@
 // 	size_t			size;
 
 // 	size = 6;
-// 	memset(&ptr, 0, sizeof(t_arena));
+// 	arena_init(&ptr);
 
 // 	str1 = arena_alloc(&ptr, size);
-// 	printf("%p\n", ptr.buffer);
+// 	// printf("%p\n", ptr.buffer);
 // 	memcpy(str1, "hello", size - 1);
 
 // 	str2 = arena_alloc(&ptr, size);
-// 	printf("%p\n", ptr.buffer);
+// 	// printf("%p\n", ptr.buffer);
 // 	memcpy(str2, "world", size - 1);
 
 // 	buf = (unsigned char *)ptr.buffer;
-// 	for (size_t i = 0; i < ptr.offset; i++)
-// 	{
-// 		printf("[%i]", buf[i]);
-// 	}
-// 	printf("\n");
-// 	for (size_t i = 0; i < ptr.offset; i++)
-// 	{
-// 		printf("%c", buf[i]);
-// 	}
-// 	printf("\n%s%s\n", (char *)ptr.buffer, (char *)ptr.buffer + size);
+// 	// for (size_t i = 0; i < ptr.offset; i++)
+// 	// {
+// 	// 	printf("[%i]", buf[i]);
+// 	// }
+// 	// printf("\n");
+// 	// for (size_t i = 0; i < ptr.offset; i++)
+// 	// {
+// 	// 	printf("%c", buf[i]);
+// 	// }
+// 	// printf("\n%s%s\n", (char *)ptr.buffer, (char *)ptr.buffer + size);
 
 // 	arena_free(&ptr);
 

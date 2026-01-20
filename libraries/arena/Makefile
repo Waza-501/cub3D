@@ -6,8 +6,8 @@ AR := ar rcs
 
 # Compiler and Flags
 CC			:= cc
-CFLAGS		:= -Wall -Werror -Wextra -g
-CFLAGS		+= -MMD -MP
+CFLAGS		:= -Wall -Werror -Wextra
+CFLAGS		+= -MMD -MP -g
 MAKEFLAGS	+= --no-print-directory
 INCLUDES	:= -I include
 
@@ -17,10 +17,10 @@ OBJDIR := obj/
 INCDIR := include/
 
 # Sources
-SRCS :=	arena.c \
+SRCS :=	arena_resize.c \
+		arena.c \
 		ft_memcpy.c \
 		ft_memset.c \
-		ft_realloc.c \
 
 # Objects and Dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))

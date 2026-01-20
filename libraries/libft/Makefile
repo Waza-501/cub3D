@@ -6,8 +6,8 @@ AR := ar rcs
 
 # Compiler and flags
 CC			:= cc
-CFLAGS		:= -Wall -Werror -Wextra -g
-CFLAGS		+= -MMD -MP
+CFLAGS		:= -Wall -Werror -Wextra
+CFLAGS		+= -MMD -MP -g
 MAKEFLAGS	+= --no-print-directory
 INCLUDES	:= -I include
 

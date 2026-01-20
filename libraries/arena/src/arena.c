@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:45:30 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/16 15:55:54 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/20 12:48:27 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "string.h"
 
 void	*ft_memset(void *ptr, int character, size_t num);
-void	*ft_realloc(void *ptr, size_t size);
+
+void	*arena_resize(t_arena *arena, size_t size);
 
 /**
  * @brief Free the member variable @p `buffer` of @p `arena`.
@@ -22,6 +23,14 @@ void	*ft_realloc(void *ptr, size_t size);
 void	arena_free(t_arena *arena)
 {
 	free(arena->buffer);
+}
+
+/**
+ * @brief Initialize the arena to `0`.
+ */
+void	arena_init(t_arena *arena)
+{
+	ft_memset(arena, 0, sizeof(*arena));
 }
 
 static size_t	arena_size_calculate(t_arena *arena, size_t num)
@@ -45,20 +54,27 @@ static size_t	arena_size_calculate(t_arena *arena, size_t num)
 }
 
 /**
- * @brief Allocate a contiguous block of memory from @p `arena`.
+ * @brief Allocate a contiguous block of memory from `arena`.
  *
  * Grows the internal buffer of `arena` if necessary and returns a pointer to a
- * zero-initialized memory region of size `num`.
+ * zero-initialized memory region of size `num`. Memory is allocated linearly
+ * from the arena and the internal offset is advanced accordingly.
  *
- * @param[in,out]	arena	Pointer to the struct managing the memory buffer.
- * @param[in]		num		Number of bytes to allocate from the `arena`.
+ * The arena must be properly initialized before calling this function, use
+ * `arena_init()` for that.
+ *
+ * @param[in,out] arena Pointer to the structure managing the arena buffer.
+ * @param[in] num Number of bytes to allocate from the `arena`.
  *
  * @return Pointer to the allocated memory within the `arena`, or `NULL` on
- * @return allocation failure.
+ * allocation failure.
  *
- * @warning Memory returned by this function must not be freed individually.
- * @warning The entire arena buffer should be released at once when the arena
- * @warning is no longer needed.
+ * @warning The `arena` must be initialized before use.
+ * Passing an uninitialized arena (containing garbage values) results in
+ * undefined behavior.
+ *
+ * @warning The entire arena buffer must be released at once using `arena_free()`
+ * when the arena is no longer needed.
  */
 void	*arena_alloc(t_arena *arena, size_t num)
 {
@@ -68,20 +84,17 @@ void	*arena_alloc(t_arena *arena, size_t num)
 
 	if (arena->buffer == NULL)
 	{
-		arena->buffer = ft_realloc(arena->buffer, new_size);
+		arena->buffer = arena_resize(arena, new_size);
 		if (arena->buffer == NULL)
 			return (NULL);
 		ft_memset(arena->buffer, 0, new_size);
-		arena->size = new_size;
 	}
 	else if (new_size != arena->size)
 	{
-		ptr = ft_realloc(arena->buffer, new_size);
+		ptr = arena_resize(arena, new_size);
 		if (ptr == NULL)
 			return (NULL);
-		arena->buffer = ptr;
 		ft_memset(arena->buffer + arena->size, 0, new_size - arena->size);
-		arena->size = new_size;
 	}
 	arena->offset += num;
 	return (arena->buffer + offset);
