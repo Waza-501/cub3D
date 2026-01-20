@@ -12,17 +12,13 @@ LIBRARIES :=	$(LIBFT)/libft.a \
 				$(ARENA)/arena.a \
 				$(MLX42)/libmlx42.a \
 
-# Compiler and Flags
-CC			:=	cc
-CFLAGS		:=	-Wall -Werror -Wextra -g
-MLX_FLAGS	:= -Iinclude -ldl -lglfw -pthread -lm
-MAKEFLAGS	+= --no-print-directory
-INCLUDES	:= -I include -I $(LIBFT)/include -I $(ARENA)/include
+SOURCES_DIR		:=	sources/
+SOURCES			:=	main.c\
+					raycaster_test.c\
 
-# Directories
-SRCDIR := src/
-OBJDIR := obj/
-INCDIR := include/
+OBJECTS_DIR		:=	objects/
+OBJECTS			:= $(addprefix $(OBJECTS_DIR), $(SOURCES:.c=.o))
+HEADERS			:= -I ./includes -I ./libraries/libft -I ./MLX42/include/MLX42
 
 # Sources
 SRCS :=	main.c \
