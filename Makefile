@@ -26,7 +26,9 @@ INCDIR := include/
 
 # Sources
 SRCS :=	main.c \
+		raycaster/movement.c\
 		raycaster/raycaster_test.c\
+		raycaster/vector.c\
 
 # Objects and Dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))

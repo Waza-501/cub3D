@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/20 16:17:22 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/22 11:33:52 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/22 13:00:47 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 typedef struct s_game_info
 {
-	int				screenwidth;
-	int				screenheight;
+	int				width;
+	int				height;
 	t_raycaster		*rays;
 	mlx_t			*game;
 	mlx_image_t		*background;

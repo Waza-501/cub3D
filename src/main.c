@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/15 13:44:04 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/21 18:24:43 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/22 12:58:21 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,10 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (0);
-	if (!ft_strncmp(argv[1], "raycaster", 10))
+	if (!ft_strncmp(argv[1], "r", 1))
 	{
 		printf("You have selected raycaster testing\n");
 		demo_game();
-	}
-	else if (!ft_strncmp(argv[1], "rd", 2))
-	{
-		printf("You have selected raycaster demo testing\n");
-		//demo_mlx();
 	}
 	return (0);
 }
