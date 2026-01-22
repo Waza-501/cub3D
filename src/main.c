@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/15 13:44:04 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/20 14:36:46 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/21 18:24:43 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ int	main(int argc, char **argv)
 	{
 		printf("You have selected raycaster testing\n");
 		demo_game();
+	}
+	else if (!ft_strncmp(argv[1], "rd", 2))
+	{
+		printf("You have selected raycaster demo testing\n");
+		//demo_mlx();
 	}
 	return (0);
 }

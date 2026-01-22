@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/19 12:12:30 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/20 16:50:57 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/22 12:10:41 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define screenwidth 1920
-#define screenheight 1080
 #define mapWidth 16
 #define mapHeight 12
 #define BPP sizeof(int32_t)
@@ -61,8 +59,9 @@ t_raycaster	*newraycaster(void)
 	new = (t_raycaster *)malloc(sizeof(t_raycaster));
 	if (!new)
 		exit(1);
-	new->dir = newvector(0, 0);
-	new->pos = newvector(0, 0);
+	new->pos = newvector(0, 0); // player position
+	new->dir = newvector(0, 0); // player direction
+	new->camera = newvector(0, 0.66); // 2d raycaster version of camera plane
 	new->ray_dir = newvector(0, 0);
 	new->side_dist = newvector(0, 0);
 	new->delta_dist = newvector(0, 0);
@@ -74,13 +73,16 @@ t_raycaster	*newraycaster(void)
 }
 
 
-t_game_info	*newgame(void)
+t_game_info	*newgame(int w, int h)
 {
 	t_game_info	*new;
 
 	new = (t_game_info *)malloc(sizeof(t_game_info));
 	if (!new)
 		return (NULL);
+	new->screenwidth = w;
+	new->screenheight = h;
+	new->rays = NULL;
 	new->game = NULL;
 	new->background = NULL;
 	new->wall = NULL;
@@ -92,44 +94,79 @@ t_game_info	*newgame(void)
 	return (new);
 }
 
-void	keyhooks(mlx_key_data_t key, void *input)
+void	keys(void *input)
 {
 	t_game_info	*copy;
+	mlx_t		*mlx;
 
 	copy = input;
-	if (key.key == MLX_KEY_ESCAPE)
+	mlx = copy->game;
+	/*replace the print statements with movement/rotation*/
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(copy->game);
+	if (mlx_is_key_down(copy->game, MLX_KEY_LEFT))
+		printf("rotate left\n");
+	if (mlx_is_key_down(copy->game, MLX_KEY_RIGHT))
+		printf("rotate right\n");
+	if (mlx_is_key_down(copy->game, MLX_KEY_W))
+		printf("move forward\n");
+	if (mlx_is_key_down(copy->game, MLX_KEY_A))
+		printf("move left\n");
+	if (mlx_is_key_down(copy->game, MLX_KEY_S))
+		printf("move back\n");
+	if (mlx_is_key_down(copy->game, MLX_KEY_D))
+		printf("move right\n");
+}
+
+void	cast_rays(void	*input)
+{
+	
+}
+
+void	cubed_loop(void	*input)
+{
+	
+	t_game_info	*game;
+
+	game = input;
+	keys(game);
+	cast_rays(game);
+	/*calculate rays*/
+	/*draw the new map*/
 }
 
 int	demo_game(void)
 {
 	t_game_info	*game;
-	t_raycaster	*rays;
 	int			x;
 	int			y;
 
-	game = newgame();
-	rays = newraycaster();
+	game = newgame(1600, 900);
+	if (!game)
+		return (1);
+	game->rays = newraycaster();
+	if (!game->rays)
+		return (1);
 	x = 0;
 	y = 0;
-	printf("initialised structs\n");
 	while (y < mapHeight)
 	{
 		while (x < mapWidth)
 		{
 			if (worldMap[y][x] == 2)
 			{
-				rays->pos->x = x;
-				rays->pos->y = y;
+				game->rays->pos->x = (double)x + 0.5;
+				game->rays->pos->y =(double)y + 0.5;
 			}
 			x++;
 		}
-		printf("loop x axis completed\n");
 		x = 0;
 		y++;
 	}
-	printf("start position is %i - %i\n", (int)rays->pos->x, (int)rays->pos->y);
-	game->game = mlx_init(screenwidth, screenheight, "raycast_test", false);
+	x = 0;
+	y = 0;
+	printf("start position is %i - %i\n", (int)game->rays->pos->x, (int)game->rays->pos->y);
+	game->game = mlx_init(game->screenwidth, game->screenheight, "cub3D", false);
 	game->background = mlx_new_image(game->game, 64, 64);
 	game->wall = mlx_new_image(game->game, 64, 64);
 	game->empty = mlx_new_image(game->game, 64, 64);
@@ -148,13 +185,14 @@ int	demo_game(void)
 			if (worldMap[y][x] == 0)
 				mlx_image_to_window(game->game, game->empty, x * OFFSET, y * OFFSET);
 			if (worldMap[y][x] == 2)
-				mlx_image_to_window(game->game, game->background, x * OFFSET, y * OFFSET);
+				mlx_image_to_window(game->game, game->empty, x * OFFSET, y * OFFSET);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	mlx_key_hook(game->game, &keyhooks, game);
+	printf("what happen?\n");
+	mlx_loop_hook(game->game, cubed_loop, game);
 	mlx_loop(game->game);
 	mlx_terminate(game->game);
 	exit (1);
