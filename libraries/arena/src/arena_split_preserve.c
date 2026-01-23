@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:05:22 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/23 17:10:56 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/23 17:55:42 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,20 @@ static const char	*next_word(const char *str, const char *delimiter)
 }
 
 /**
- * @brief Return an array of strings strictly treating each delimiter as a
- * string
+ * @brief Split a string into substrings using preserved delimiters.
  *
- * @return Pointer to the array of strings, or `NULL` on failure.
+ * Splits `str` into an array of strings using any character sequence found in
+ * `delimiter` as a separator.
+ *
+ * @param[in,out] arena Pointer to an initialized arena allocator.
+ * @param[in] str Null-terminated string to split.
+ * @param[in] delimiter Null-terminated string containing delimiter characters.
+ *
+ * @return A NULL-terminated array of pointers to substrings on success.
+ * @return `NULL` if memory allocation fails.
+ *
+ * @note Empty fields caused by consecutive delimiters will be allocated.
+ * @note The arena must be freed with `arena_destroy`.
  */
 char	**arena_split_preserve(t_arena *arena,
 	const char *str, const char *delimiter)

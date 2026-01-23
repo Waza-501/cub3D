@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 14:14:35 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/23 17:00:41 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/23 17:53:53 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,21 @@ static const char	*skip_delimiters(const char *str, const char *delimiter)
 }
 
 /**
- * @brief Return an array of strings with repeating delimiters collapsed into a
- * single instance.
+ * @brief Split a string into substrings using collapsed delimiters.
  *
- * @return Pointer to the array of strings, or `NULL` on failure.
+ * Splits `str` into an array of strings using any character sequence found in
+ * `delimiter` as a separator. For a stricter enforcement of delimiters,
+ * use `arena_split_preserve` instead.
+ *
+ * @param[in,out] arena Pointer to an initialized arena allocator.
+ * @param[in] str Null-terminated string to split.
+ * @param[in] delimiter Null-terminated string containing delimiter characters.
+ *
+ * @return A NULL-terminated array of pointers to substrings on success.
+ * @return `NULL` if memory allocation fails.
+ *
+ * @note Empty fields caused by consecutive delimiters are omitted.
+ * @note The arena must be freed with `arena_destroy`.
  */
 char	**arena_split_collapse(t_arena *arena,
 	const char *str, const char *delimiter)

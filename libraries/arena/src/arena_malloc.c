@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 10:36:38 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/23 17:09:48 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/23 17:36:04 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ static size_t	arena_align_up(size_t size, size_t align)
 	return ((size + align - 1) & ~(align - 1));
 }
 
+/**
+ * @brief Create a node with a data size of `size.
+ *
+ * @return Pointer to allocated node on success.
+ * @return `NULL` if memory allocation fails.
+ */
 static t_arena_node	*arena_llist_new(size_t size)
 {
 	t_arena_node	*node;
@@ -47,6 +53,27 @@ static t_arena_node	*arena_llist_new(size_t size)
 	return (node);
 }
 
+/**
+ * @brief Allocate memory from an arena allocator.
+ *
+ * Allocates a contiguous block of memory of at least `size` bytes from the
+ * given arena.
+ * If the current arena block does not have enough remaining space, a new block
+ * is allocated and linked internally.
+ *
+ * @param[in,out] arena Pointer to an initialized arena structure.
+ * @param[in] size Number of bytes requested.
+ *
+ * @return Pointer to the allocated memory on success.
+ * @return `NULL` if memory allocation fails.
+ *
+ * @warning Memory returned by this function must not be freed individually.
+ * @warning All memory allocated from the arena is released at once by
+ * destroying the arena.
+ *
+ * @note The arena must be zero-initialized before first use with `arena_init`.
+ * @note The arena must be freed with `arena_destroy`.
+ */
 void	*arena_malloc(t_arena *arena, size_t size)
 {
 	const size_t	aligned = arena_align_up(size, alignof(max_align_t));

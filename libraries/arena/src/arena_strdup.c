@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:07:59 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/23 17:01:47 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/23 17:56:22 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	*ft_memcpy(void *dest, const void *src, size_t num);
  * @param[in,out] arena Pointer to the structure managing the arena buffer.
  * @param[in] str String to duplicate.
  *
- * @return Pointer to the duplicated string, or `NULL` on failure.
+ * @return Pointer to the duplicated string on success.
+ * @return `NULL` if memory allocation fails.
  *
- * @warning The entire arena buffer must be released at once using
- * `arena_free()` when the arena is no longer needed.
+ * @note The arena must be freed with `arena_destroy`.
  */
 char	*arena_strdup(t_arena *arena, const char *str)
 {
