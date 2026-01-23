@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 14:14:35 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/22 15:56:54 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/23 17:00:41 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,16 @@ char	**arena_split_collapse(t_arena *arena,
 
 	word = 0;
 	word_count = count_words(str, delimiter);
-	ptr = arena_alloc(arena, (word_count + 1) * sizeof(char *));
+	ptr = arena_calloc(arena, word_count + 1, sizeof(char *));
 	if (ptr == NULL)
 		return (NULL);
 	while (word < word_count)
 	{
 		str = skip_delimiters(str, delimiter);
 		length = word_length(str, delimiter);
-		ptr[word] = arena_alloc(arena, (length + 1) * sizeof(char));
+		ptr[word] = arena_calloc(arena, length + 1, sizeof(char));
 		if (ptr[word] == NULL)
-			return (arena_free(arena), NULL);
+			return (arena_destroy(arena), NULL);
 		ft_memcpy(ptr[word], str, length);
 		str += length;
 		word += 1;

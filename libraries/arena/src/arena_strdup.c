@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:07:59 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/22 14:47:08 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/23 17:01:47 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*arena_strdup(t_arena *arena, const char *str)
 	const size_t	strlen = ft_strlen(str);
 	char			*ptr;
 
-	ptr = arena_alloc(arena, strlen + 1 * sizeof(char));
+	ptr = arena_malloc(arena, strlen + 1 * sizeof(char));
 	if (ptr == NULL)
 	{
 		return (NULL);

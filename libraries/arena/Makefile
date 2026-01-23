@@ -17,8 +17,8 @@ OBJDIR := obj/
 INCDIR := include/
 
 # Sources
-SRCS :=	arena_alloc.c \
-		arena_resize.c \
+SRCS :=	arena_malloc.c \
+		arena_calloc.c \
 		arena_split_collapse.c \
 		arena_split_preserve.c \
 		arena_strdup.c \

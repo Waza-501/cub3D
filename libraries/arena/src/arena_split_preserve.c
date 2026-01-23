@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:05:22 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/22 17:30:27 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/23 17:10:56 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ static const char	*next_word(const char *str, const char *delimiter)
 	return (str);
 }
 
+/**
+ * @brief Return an array of strings strictly treating each delimiter as a
+ * string
+ *
+ * @return Pointer to the array of strings, or `NULL` on failure.
+ */
 char	**arena_split_preserve(t_arena *arena,
 	const char *str, const char *delimiter)
 {
@@ -68,20 +74,18 @@ char	**arena_split_preserve(t_arena *arena,
 
 	word = 0;
 	word_num = word_count(str, delimiter);
-	ptr = arena_alloc(arena, (word_num + 1) * sizeof(char *));
+	ptr = arena_calloc(arena, word_num + 1, sizeof(char *));
 	if (ptr == NULL)
 		return (NULL);
 	while (word < word_num)
 	{
 		length = word_length(str, delimiter);
-		ptr[word] = arena_alloc(arena, (length + 1) * sizeof(char));
+		ptr[word] = arena_calloc(arena, length + 1, sizeof(char));
 		if (ptr[word] == NULL)
-			return (NULL);
+			return (arena_destroy(arena), NULL);
 		ft_memcpy(ptr[word], str, length);
 		str = next_word(str, delimiter);
 		word += 1;
 	}
 	return (ptr);
 }
-
-// ,a,,b,c,
