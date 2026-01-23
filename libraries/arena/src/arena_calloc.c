@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 16:59:49 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/23 17:07:40 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/23 17:19:47 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	*arena_calloc(t_arena *arena, size_t num, size_t size)
 {
 	void	*ptr;
 
-	if (num == 0 || size == 0)
+	if ((num == 0 || size == 0) || (num != 0 && size > SIZE_MAX / num))
 	{
-		return (malloc(0));
+		return (NULL);
 	}
 	ptr = arena_malloc(arena, num * size);
-	if (ptr == NULL || size > SIZE_MAX / num)
+	if (ptr == NULL)
 	{
 		return (NULL);
 	}
