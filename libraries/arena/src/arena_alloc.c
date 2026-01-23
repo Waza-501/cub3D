@@ -6,12 +6,11 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:45:30 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/20 12:48:27 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/22 14:16:41 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
-#include "string.h"
 
 void	*ft_memset(void *ptr, int character, size_t num);
 
@@ -73,8 +72,8 @@ static size_t	arena_size_calculate(t_arena *arena, size_t num)
  * Passing an uninitialized arena (containing garbage values) results in
  * undefined behavior.
  *
- * @warning The entire arena buffer must be released at once using `arena_free()`
- * when the arena is no longer needed.
+ * @warning The entire arena buffer must be released at once using
+ * `arena_free()` when the arena is no longer needed.
  */
 void	*arena_alloc(t_arena *arena, size_t num)
 {

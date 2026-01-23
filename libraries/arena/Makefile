@@ -17,10 +17,15 @@ OBJDIR := obj/
 INCDIR := include/
 
 # Sources
-SRCS :=	arena_resize.c \
-		arena.c \
+SRCS :=	arena_alloc.c \
+		arena_resize.c \
+		arena_split_collapse.c \
+		arena_split_preserve.c \
+		arena_strdup.c \
 		ft_memcpy.c \
 		ft_memset.c \
+		ft_strchr.c \
+		ft_strlen.c \
 
 # Objects and Dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))
