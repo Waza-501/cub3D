@@ -24,6 +24,8 @@ SRCS :=	arena_calloc.c \
 		arena_split_collapse.c \
 		arena_split_preserve.c \
 		arena_strdup.c \
+		arena_strndup.c \
+		arena_strtrim.c \
 		ft_memcpy.c \
 		ft_memset.c \
 		ft_strchr.c \
