@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/19 12:12:30 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/22 18:16:47 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/26 12:26:24 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,83 +88,27 @@ t_game_info	*newgame(int w, int h)
 	new->w_wall = NULL;
 	return (new);
 }
+/*Commented out as it is currently not used*/
+// void	cast_rays(t_game_info *game, int x)
+// {
+// 	t_raycaster	*rays;
+// 	double		cam_x;
 
-void	cast_rays(t_game_info *game, int x)
-{
-	t_raycaster	*rays;
-	double		cam_x;
-
-	rays = game->rays;
-	cam_x = 2 * x / (double)game->width - 1;
-	rays->ray_dir->x = rays->dir->x + rays->camera->x * cam_x;
-	rays->ray_dir->y = rays->dir->y + rays->camera->y * cam_x;
+// 	rays = game->rays;
+// 	cam_x = 2 * x / (double)game->width - 1;
+// 	rays->ray_dir->x = rays->dir->x + rays->camera->x * cam_x;
+// 	rays->ray_dir->y = rays->dir->y + rays->camera->y * cam_x;
 	
-}
-
-void	draw_direction_indicator(t_game_info *game, int offset)
-{
-	t_raycaster	*rays;
-	int			i;
-	double		end_x;
-	double		end_y;
-	int			pixel_x;
-	int			pixel_y;
-
-	rays = game->rays;
-	// Clear the background image first
-	memset(game->background->pixels, 0, game->background->height * game->background->width * BPP);
-	
-	// Draw a line in the direction the player is facing
-	i = 0;
-	while (i < 200)
-	{
-		end_x = rays->pos->x + rays->dir->x * i * 0.005;
-		end_y = rays->pos->y + rays->dir->y * i * 0.005;
-		pixel_x = (int)(end_x * offset);
-		pixel_y = (int)(end_y * offset);
-		
-		if (pixel_x >= 0 && pixel_x < (int)game->background->width && 
-			pixel_y >= 0 && pixel_y < (int)game->background->height)
-		{
-			mlx_put_pixel(game->background, pixel_x, pixel_y, 0xFF0000FF);
-		}
-		i++;
-	}
-}
-
-void	cast_single_ray(t_game_info *game)
-{
-	t_raycaster	*rays;
-
-	rays = game->rays;
-	rays->ray_dir->x = rays->dir->x;
-	rays->ray_dir->y = rays->dir->y;
-	printf("casting a single ray, facing x:%f y:%f\n", rays->ray_dir->x, rays->ray_dir->y);
-}
-
-void	raycaster(t_game_info *game)
-{
-	int			x;
-	int			offset;
-
-	x = 0;
-	offset = (game->width + game->height) / 4 / 8;
-	/*loop for front-aspect raycasting*/
-	cast_single_ray(game);
-	draw_direction_indicator(game, offset);
-	// while (x < game->width)
-	// {
-	// 	cast_rays(game, x);
-	// 	x++;
-	// }
-
-}
+// }
 
 void	cubed_loop(void	*input)
 {
 	t_game_info	*game;
 
 	game = input;
+
+	game->rays->ipos_x = (int)game->rays->pos->x;
+	game->rays->ipos_y = (int)game->rays->pos->y;
 	keys(game);
 	raycaster(game);
 	/*calculate rays*/
@@ -194,9 +138,7 @@ int	demo_game(void)
 			if (worldMap[y][x] == 2)
 			{
 				game->rays->pos->x = (double)x + 0.5;
-				game->rays->ipos_x = x;
 				game->rays->pos->y = (double)y + 0.5;
-				game->rays->ipos_y = y;
 			}
 			x++;
 		}

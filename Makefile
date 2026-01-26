@@ -28,6 +28,7 @@ INCDIR := include/
 SRCS :=	main.c \
 		raycaster/movement.c\
 		raycaster/raycaster_test.c\
+		raycaster/raycaster.c\
 		raycaster/vector.c\
 
 # Objects and Dependencies
