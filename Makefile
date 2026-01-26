@@ -26,9 +26,12 @@ INCDIR := include/
 
 # Sources
 SRCS :=	main.c \
+		raycaster/init_game.c\
+		raycaster/init_raycaster.c\
 		raycaster/movement.c\
 		raycaster/raycaster_test.c\
 		raycaster/raycaster.c\
+		raycaster/utils.c\
 		raycaster/vector.c\
 
 # Objects and Dependencies

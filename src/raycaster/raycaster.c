@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/22 13:04:12 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/26 09:43:21 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/26 16:56:19 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,10 @@ void	draw_direction_indicator(t_game_info *game, int offset)
 		end_y = rays->pos->y + rays->dir->y * i * 0.005;
 		pixel_x = (int)(end_x * offset);
 		pixel_y = (int)(end_y * offset);
-		
 		if (pixel_x >= 0 && pixel_x < (int)game->background->width && 
 			pixel_y >= 0 && pixel_y < (int)game->background->height)
 		{
-			mlx_put_pixel(game->background, pixel_x, pixel_y, 0xFF0000FF);
+			mlx_put_pixel(game->background, pixel_x, pixel_y, 0x66FF66FF);
 		}
 		i++;
 	}
@@ -86,13 +85,13 @@ void	get_ray_delta(t_vector *ray_dir, t_vector *delta_dist)
 void	get_side(t_raycaster *rays, t_vector *dir, t_vector *side)
 {
 	if (dir->x > 0)
-		side->x = (rays->ipos_x + 1.0 - rays->pos->x) * rays->delta_dist->x;
+		side->x = (rays->map_x + 1.0 - rays->pos->x) * rays->delta_dist->x;
 	else
-		side->x = (rays->pos->x - rays->ipos_x) * rays->delta_dist->x;
+		side->x = (rays->pos->x - rays->map_x) * rays->delta_dist->x;
 	if (dir->y > 0)
-		side->y = (rays->ipos_y + 1.0 - rays->pos->y) * rays->delta_dist->y;
+		side->y = (rays->map_y + 1.0 - rays->pos->y) * rays->delta_dist->y;
 	else
-		side->y = (rays->pos->y - rays->ipos_y) * rays->delta_dist->y;
+		side->y = (rays->pos->y - rays->map_y) * rays->delta_dist->y;
 }
 
 /*note. add side detection for N, S, E and W*/
@@ -111,8 +110,8 @@ void	run_dda(t_raycaster	*rays, t_vector *dir, t_vector *delta, t_vector *side)
 	if (dir->y < 0)
 		step_y = -1;
 	hit = 0;
-	x = rays->ipos_x;
-	y = rays->ipos_y;
+	x = rays->map_x;
+	y = rays->map_y;
 	while (hit == 0)
 	{
 		if (side->x < side->y)

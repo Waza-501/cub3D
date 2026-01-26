@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/20 16:17:22 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/22 13:00:47 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/26 16:58:41 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_game_info
 	int				width;
 	int				height;
 	t_raycaster		*rays;
-	mlx_t			*game;
+	mlx_t			*mlx;
 	mlx_image_t		*background;
 	mlx_image_t		*wall;
 	mlx_image_t		*empty;
@@ -37,6 +37,9 @@ typedef struct s_game_info
 }			t_game_info;
 
 
+int			configure_game(t_game_info *game, int x, int y);
+t_game_info	*newgame(int width, int height);
 int			demo_game(void);
+void		cleanup_game(t_game_info *game);
 
 #endif
