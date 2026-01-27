@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:59:32 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/26 13:49:06 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/27 13:52:48 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ enum e_type_ids
 	FLOOR = 4,
 	CEILING = 5,
 	TYPE_IDS_SIZE = 6,
+};
+
+enum e_player_direction
+{
+	UP = 0,
+	RIGHT = 1,
+	DOWN = 2,
+	LEFT = 3,
+	PLAYER_DIRECTION_SIZE = 4,
 };
 
 #endif

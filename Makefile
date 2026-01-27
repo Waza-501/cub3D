@@ -26,9 +26,12 @@ OBJDIR := obj/
 INCDIR := include/
 
 # Sources
-SRCS :=	has_extension.c \
-		main.c \
-		parse_map.c \
+SRCS :=	main.c \
+		map_error_check.c \
+		map_parse_colors.c \
+		map_parse_identifiers.c \
+		map_parse_textures.c \
+		map_parse.c \
 
 # Objects and Dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))
@@ -78,7 +81,7 @@ fclean: clean
 	@rm -rf $(NAME)
 	@$(MAKE) -C $(LIBFT) fclean
 	@$(MAKE) -C $(ARENA) fclean
-	@rm -rf $(MLX42_DIR)
+# 	@rm -rf $(MLX42_DIR)
 	@echo $(GREEN)Cleaned up all created files.$(RESET)
 
 re:	fclean all

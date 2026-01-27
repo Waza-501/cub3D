@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 13:58:58 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/26 17:26:01 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/01/27 13:54:30 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,31 @@
 # include <stdio.h>
 # include <errno.h>
 
+typedef struct s_maze
+{
+	char					**matrix;
+	enum e_player_direction	player_direction;
+	int						line_count;
+}	t_maze;
+
 typedef struct s_map
 {
-	char	**matrix;
 	char	*tex_north;
 	char	*tex_east;
 	char	*tex_south;
 	char	*tex_west;
 	int		color_floor;
 	int		color_ceiling;
+	t_maze	maze;
 	t_arena arena;
 }	t_map;
 
-bool	has_extension(const char *filename, const char *extension);
+bool	map_has_valid_extension(const char *filename, const char *extension);
+bool	map_is_incomplete(t_map *map);
+bool	map_has_valid_identifier(char *line);
 
-t_map	*map_parse(t_map *map, const char *filename);
+int		map_parse(t_map *map, const char *filename);
+size_t	map_copy_color(t_map *map, char *line, size_t idx);
+size_t	map_copy_filepath(t_map *map, char *line, size_t idx);
 
 #endif
