@@ -50,6 +50,7 @@ RESET	:= "\e[0m"
 $(OBJDIR)%.o: $(SRCDIR)%.c Makefile
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@echo $(BLUE)Compiling $@$(RESET)
 
 all: $(NAME)
 

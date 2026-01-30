@@ -27,11 +27,12 @@ INCDIR := include/
 
 # Sources
 SRCS :=	main.c \
-		map_error_check.c \
-		map_parse_colors.c \
-		map_parse_identifiers.c \
-		map_parse_textures.c \
+		map_color.c \
+		map_matrix_enclosed.c \
+		map_matrix.c \
 		map_parse.c \
+		map_texture.c \
+		map_utils.c \
 
 # Objects and Dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))
@@ -52,12 +53,13 @@ RESET	:= "\e[0m"
 $(OBJDIR)%.o: $(SRCDIR)%.c Makefile
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@echo $(BLUE)Compiling $@$(RESET)
 
 all: libraries $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(LIBRARIES) $(MLX_FLAGS)
-	@echo $(GREEN)$(NAME) compiled$(RESET)
+	@echo $(GREEN)Program $(NAME) compiled$(RESET)
 
 -include $(DEPS)
 
