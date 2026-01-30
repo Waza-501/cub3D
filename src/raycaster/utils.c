@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/26 16:45:09 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/26 18:00:19 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/27 11:48:06 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	cleanup_game(t_game_info *game)
 {
 	if (game->rays)
 		cleanup_rays(game->rays);
-	delete_image(game->mlx, game->background);
-	delete_image(game->mlx, game->wall);
-	delete_image(game->mlx, game->empty);
-	delete_image(game->mlx, game->n_wall);
-	delete_image(game->mlx, game->e_wall);
-	delete_image(game->mlx, game->s_wall);
-	delete_image(game->mlx, game->w_wall);
+	// delete_image(game->mlx, game->background);
+	// delete_image(game->mlx, game->wall);
+	// delete_image(game->mlx, game->empty);
+	// delete_image(game->mlx, game->n_wall);
+	// delete_image(game->mlx, game->e_wall);
+	// delete_image(game->mlx, game->s_wall);
+	// delete_image(game->mlx, game->w_wall);
 	mlx_terminate(game->mlx);
 	free (game);
 }

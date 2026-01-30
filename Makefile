@@ -26,6 +26,7 @@ INCDIR := include/
 
 # Sources
 SRCS :=	main.c \
+		raycaster/draw_line.c\
 		raycaster/init_game.c\
 		raycaster/init_raycaster.c\
 		raycaster/movement.c\

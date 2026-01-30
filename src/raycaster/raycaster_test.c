@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/19 12:12:30 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/26 18:00:07 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/30 16:47:46 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int worldMap[mapHeight][mapWidth] =
 {
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1},
   {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -53,32 +53,33 @@ void	cubed_loop(void	*input)
 
 	game->rays->map_x = (int)game->rays->pos->x;
 	game->rays->map_y = (int)game->rays->pos->y;
-	keys(game);
 	raycaster(game);
+	keys(game);
 	/*calculate rays*/
 	/*draw the new map*/
 }
 
 int	run_game(t_game_info *game, int offset)
 {
-	int	x = 0;
-	int	y = 0;
+	// int	x = 0;
+	// int	y = 0;
 
+	(void)offset;
 	memset(game->background->pixels, 50, game->background->height * game->background->width * BPP);
-	memset(game->empty->pixels, 200, game->empty->height * game->empty->width * BPP);
-	while (y < mapHeight)
-	{
-		while (x < mapWidth)
-		{
-			if (worldMap[y][x] == 1)
-				mlx_image_to_window(game->mlx, game->wall, x * offset, y * offset);
-			else
-				mlx_image_to_window(game->mlx, game->empty, x * offset, y * offset);
-			x++;
-		}
-		x = 0;
-		y++;
-	}
+	// memset(game->empty->pixels, 200, game->empty->height * game->empty->width * BPP);
+	// while (y < mapHeight)
+	// {
+	// 	while (x < mapWidth)
+	// 	{
+	// 		if (worldMap[y][x] == 1)
+	// 			mlx_image_to_window(game->mlx, game->wall, x * offset, y * offset);
+	// 		else
+	// 			mlx_image_to_window(game->mlx, game->empty, x * offset, y * offset);
+	// 		x++;
+	// 	}
+	// 	x = 0;
+	// 	y++;
+	// }
 	mlx_image_to_window(game->mlx, game->background, 0, 0);
 	mlx_loop_hook(game->mlx, cubed_loop, game);
 	mlx_loop(game->mlx);
@@ -103,9 +104,10 @@ int	demo_game(void)
 		exit(1);
 	}
 	offset = (game->width + game->height) / 4 / 8;
-	game->background = mlx_new_image(game->mlx, mapWidth * offset, mapHeight * offset);
-	game->wall = mlx_new_image(game->mlx, offset, offset);
-	game->empty = mlx_new_image(game->mlx, offset, offset);
+	//game->background = mlx_new_image(game->mlx, mapWidth * offset, mapHeight * offset);
+	game->background = mlx_new_image(game->mlx, game->width, game->height);
+	// game->wall = mlx_new_image(game->mlx, offset, offset);
+	// game->empty = mlx_new_image(game->mlx, offset, offset);
 	run_game(game, offset);
 	cleanup_game(game);
 	return (0);

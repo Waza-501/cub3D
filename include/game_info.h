@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/20 16:17:22 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/26 16:58:41 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/01/27 12:10:08 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include <MLX42/MLX42.h>
 # include "raycaster.h"
+
+# define RGB_RED 0xFF0000FF
+# define RGB_GREEN 0x00FF00FF
+# define RGB_BLUE 0x0000FFFF
+# define RGB_ALPHA 0x000000FF
 
 typedef struct s_game_info
 {
