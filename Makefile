@@ -13,8 +13,9 @@ LIBRARIES :=	$(LIBFT)/libft.a \
 				$(MLX42)/libmlx42.a \
 
 # Compiler and Flags
-CC			:=	cc
-CFLAGS		:=	-Wall -Werror -Wextra -g
+CC			:= cc
+CFLAGS		:= -Wall -Wextra -Werror
+CFLAGS		+= -MMD -MP -g
 MLX_FLAGS	:= -Iinclude -ldl -lglfw -pthread -lm
 MAKEFLAGS	+= --no-print-directory
 INCLUDES	:= -I include -I $(LIBFT)/include -I $(ARENA)/include
@@ -26,6 +27,12 @@ INCDIR := include/
 
 # Sources
 SRCS :=	main.c \
+		map_color.c \
+		map_matrix_enclosed.c \
+		map_matrix.c \
+		map_parse.c \
+		map_texture.c \
+		map_utils.c \
 
 # Objects and Dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))
@@ -46,12 +53,13 @@ RESET	:= "\e[0m"
 $(OBJDIR)%.o: $(SRCDIR)%.c Makefile
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@echo $(BLUE)Compiling $@$(RESET)
 
 all: libraries $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(LIBRARIES) $(MLX_FLAGS)
-	@echo $(GREEN)$(NAME) compiled$(RESET)
+	@echo $(GREEN)Program $(NAME) compiled$(RESET)
 
 -include $(DEPS)
 
@@ -75,7 +83,7 @@ fclean: clean
 	@rm -rf $(NAME)
 	@$(MAKE) -C $(LIBFT) fclean
 	@$(MAKE) -C $(ARENA) fclean
-	@rm -rf $(MLX42_DIR)
+# 	@rm -rf $(MLX42_DIR)
 	@echo $(GREEN)Cleaned up all created files.$(RESET)
 
 re:	fclean all

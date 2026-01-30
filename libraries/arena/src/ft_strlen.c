@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 13:44:04 by owhearn           #+#    #+#             */
-/*   Updated: 2026/01/29 18:05:46 by dbakker          ###   ########.fr       */
+/*   Created: 2025/04/22 12:55:06 by dbakker           #+#    #+#             */
+/*   Updated: 2026/01/22 14:55:49 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include "cub3D.h"
+#include <stddef.h>
 
-int	main(int argc, char const *argv[])
+/**
+ * @return The length of `str`, excluding the null byte.
+ */
+size_t	ft_strlen(const char *str)
 {
-	t_map	map;
+	size_t	strlen;
 
-	if (argc != 2)
+	strlen = 0;
+	while (str[strlen])
 	{
-		return (EXIT_FAILURE);
+		strlen++;
 	}
-	ft_memset(&map, 0, sizeof(map));
-	arena_init(&map.arena);
-	if (map_parse(&map, argv[1]) == EXIT_FAILURE)
-	{
-		arena_destroy(&map.arena);
-		return (EXIT_FAILURE);
-	}
-	arena_destroy(&map.arena);
-	return (EXIT_SUCCESS);
+	return (strlen);
 }
