@@ -6,20 +6,17 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/26 15:17:08 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/30 16:48:29 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/04 09:53:58 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster.h"
+#include "cub3D.h"
 #include <stdlib.h>
 
-t_raycaster	*newraycaster(int x, int y)
+int	newraycaster(t_raycaster *new, int x, int y)
 {
-	t_raycaster	*new;
-
-	new = (t_raycaster *)malloc(sizeof(t_raycaster));
-	if (!new)
-		exit(1);
+	new->current_ray = 0;
 	new->map_x = x;
 	new->map_y = y;
 	new->side = 0;
@@ -27,14 +24,10 @@ t_raycaster	*newraycaster(int x, int y)
 	new->m_rot = 0.05;
 	new->k_rot = 0.05;
 	new->pos = newvector((double)x + 0.5, (double)y + 0.5);
-	new->dir = newvector(0, -1);
-	new->camera = newvector(0.66, 0);
+	new->dir = newvector(0, 0);
+	new->camera = newvector(0, 0);
 	new->ray_dir = newvector(0, 0);
 	new->side_dist = newvector(0, 0);
 	new->delta_dist = newvector(0, 0);
-
-	if (!new->dir || !new->pos || !new->ray_dir || !new->side_dist
-		|| !new->delta_dist)
-		exit (1);
-	return (new);
+	return (0);
 }

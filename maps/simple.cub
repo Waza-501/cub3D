@@ -1,9 +1,9 @@
-EA./Makefile
-SO./Makefile
-F220,000,0
-NO./Makefile
-C 225,30,0
-WE./Makefile
+EA ./textures/WallpapergreenL.png
+SO ./textures/WoodbrickD.png
+F 220,120,50
+NO ./textures/WoodbrickL.png
+C 225,200,120
+WE ./textures/WallpapergreenSSD.png
 
 11111111111111111111111111111111111
 1000000000000000000000000000001

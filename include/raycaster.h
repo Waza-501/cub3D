@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/20 14:28:34 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/30 16:14:48 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/04 10:01:20 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,25 @@ typedef struct s_vector
  */
 typedef struct s_raycaster
 {
+	int			current_ray;
 	int			map_x;
 	int			map_y;
 	int			side;
 	double		m_speed;
 	double		m_rot;
 	double		k_rot;
-	t_vector	*pos;
-	t_vector	*dir;
-	t_vector	*camera;
-	t_vector	*ray_dir;
-	t_vector	*side_dist;
-	t_vector	*delta_dist;
+	t_vector	pos;
+	t_vector	dir;
+	t_vector	camera;
+	t_vector	ray_dir;
+	t_vector	side_dist;
+	t_vector	delta_dist;
 }				t_raycaster;
 
 
-void		draw_line(t_game_info *game, t_raycaster *rays, int x);
+void		draw_line(t_game_info *game, t_raycaster *rays);
 void		raycaster(t_game_info *game);
-t_raycaster	*newraycaster(int x, int y);
-t_vector	*newvector(double x, double y);
+int			newraycaster(t_raycaster *rays, int x, int y);
+t_vector	newvector(double x, double y);
 
 #endif

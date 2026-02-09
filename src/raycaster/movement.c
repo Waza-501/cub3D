@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/22 13:04:22 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/30 16:32:02 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/09 09:48:53 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,23 @@
 #include <math.h>
 #include <stdio.h>
 
-#define mapWidth 16
-#define mapHeight 12
-#define BPP sizeof(int32_t)
-#define N 0
-#define E 90
-#define S 180
-#define W -90
-
-static int worldMap[mapHeight][mapWidth] = 
-{
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
-
-
-static void	move_player(t_raycaster *rays, double move, double strafe)
+static void	move_player(t_map *map, t_raycaster *rays, double move, double strafe)
 {
 	double	move_x;
 	double	move_y;
 	double	new_x;
 	double	new_y;
 
-	move_x = rays->dir->x * move * rays->m_speed;
-	move_y = rays->dir->y * move * rays->m_speed;
-	move_x += -rays->dir->y * strafe * rays->m_speed;
-	move_y += rays->dir->x * strafe * rays->m_speed;
-	new_x = rays->pos->x + move_x;
-	new_y = rays->pos->y + move_y;
-	if (worldMap[(int)new_y][(int)rays->pos->x] != 1)
-		rays->pos->y = new_y;
-	if (worldMap[((int)rays->pos->y)][(int)new_x] != 1)
-		rays->pos->x = new_x;
+	move_x = rays->dir.x * move * rays->m_speed;
+	move_y = rays->dir.y * move * rays->m_speed;
+	move_x += -rays->dir.y * strafe * rays->m_speed;
+	move_y += rays->dir.x * strafe * rays->m_speed;
+	new_x = rays->pos.x + move_x;
+	new_y = rays->pos.y + move_y;
+	if (map->matrix[(int)new_y][(int)rays->pos.x] != '1')
+		rays->pos.y = new_y;
+	if (map->matrix[((int)rays->pos.y)][(int)new_x] != '1')
+		rays->pos.x = new_x;
 }
 
 static void	rotate_player(t_raycaster *rays, keys_t key)
@@ -65,8 +40,8 @@ static void	rotate_player(t_raycaster *rays, keys_t key)
 	t_vector	*cam;
 	double		old_x;
 
-	dir = rays->dir;
-	cam = rays->camera;
+	dir = &rays->dir;
+	cam = &rays->camera;
 	old_x = 0;
 	if (key == MLX_KEY_LEFT)
 	{
@@ -100,9 +75,9 @@ void	keys(void *input)
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(copy->mlx);
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_LEFT))
-		rotate_player(copy->rays, MLX_KEY_LEFT);
+		rotate_player(&copy->rays, MLX_KEY_LEFT);
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_RIGHT))
-		rotate_player(copy->rays, MLX_KEY_RIGHT);
+		rotate_player(&copy->rays, MLX_KEY_RIGHT);
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_W))
 		move += 1.0;
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_A))
@@ -111,5 +86,5 @@ void	keys(void *input)
 		move += -1.0;
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_D))
 		strafe += 1.0;
-	move_player(copy->rays, move, strafe);
+	move_player(copy->map, &copy->rays, move, strafe);
 }
