@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/22 13:04:22 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/09 09:48:53 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/09 15:26:03 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 #include <math.h>
 #include <stdio.h>
 
-static void	move_player(t_map *map, t_raycaster *rays, double move, double strafe)
+static void	move_player(t_map *map, t_raycaster *rays, int move, int strafe)
 {
 	double	move_x;
 	double	move_y;
 	double	new_x;
 	double	new_y;
 
-	move_x = rays->dir.x * move * rays->m_speed;
-	move_y = rays->dir.y * move * rays->m_speed;
-	move_x += -rays->dir.y * strafe * rays->m_speed;
-	move_y += rays->dir.x * strafe * rays->m_speed;
+	move_x = rays->dir.x * (double)move * rays->m_speed;
+	move_y = rays->dir.y * (double)move * rays->m_speed;
+	move_x += -rays->dir.y * (double)strafe * rays->m_speed;
+	move_y += rays->dir.x * (double)strafe * rays->m_speed;
 	new_x = rays->pos.x + move_x;
 	new_y = rays->pos.y + move_y;
 	if (map->matrix[(int)new_y][(int)rays->pos.x] != '1')
@@ -66,12 +66,12 @@ static void	rotate_player(t_raycaster *rays, keys_t key)
 void	keys(void *input)
 {
 	t_game_info	*copy;
-	double		move;
-	double		strafe;
+	int			move;
+	int			strafe;
 
 	copy = input;
-	move = 0.0;
-	strafe = 0.0;
+	move = 0;
+	strafe = 0;
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(copy->mlx);
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_LEFT))
@@ -79,12 +79,12 @@ void	keys(void *input)
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_RIGHT))
 		rotate_player(&copy->rays, MLX_KEY_RIGHT);
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_W))
-		move += 1.0;
+		move += 1;
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_A))
-		strafe += -1.0;
+		strafe += -1;
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_S))
-		move += -1.0;
+		move += -1;
 	if (mlx_is_key_down(copy->mlx, MLX_KEY_D))
-		strafe += 1.0;
+		strafe += 1;
 	move_player(copy->map, &copy->rays, move, strafe);
 }

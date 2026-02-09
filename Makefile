@@ -29,6 +29,7 @@ INCDIR := include/
 SRCS :=	main.c \
 		cub3D.c\
 		raycaster/draw_line.c\
+		raycaster/draw_utils.c\
 		raycaster/init_game.c\
 		raycaster/init_raycaster.c\
 		raycaster/movement.c\
@@ -91,7 +92,7 @@ fclean: clean
 	@rm -rf $(NAME)
 	@$(MAKE) -C $(LIBFT) fclean
 	@$(MAKE) -C $(ARENA) fclean
-# 	@rm -rf $(MLX42_DIR)
+	@rm -rf $(MLX42_DIR)
 	@echo $(GREEN)Cleaned up all created files.$(RESET)
 
 re:	fclean all

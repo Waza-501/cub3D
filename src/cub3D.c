@@ -6,18 +6,12 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/02/03 08:03:38 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/03 09:17:14 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/09 15:09:54 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_info.h"
 #include "movement.h"
-
-#define BPP sizeof(int32_t)
-#define N 0
-#define E 90
-#define S 180
-#define W -90
 
 void	cubed_loop(void	*input)
 {
@@ -37,13 +31,13 @@ int	run_game(t_map *map)
 	game = newgame(1600, 900);
 	if (!game)
 		return (1);
-	if (configure_game(game, map, map->player.position_x, map->player.position_y))
+	if (configure_game(game, map, map->player.position_x,
+			map->player.position_y))
 	{
 		cleanup_game(game);
 		return (1);
 	}
 	game->background = mlx_new_image(game->mlx, game->width, game->height);
-	ft_memset(game->background->pixels, 50, game->background->height * game->background->width * BPP);
 	mlx_image_to_window(game->mlx, game->background, 0, 0);
 	mlx_loop_hook(game->mlx, cubed_loop, game);
 	mlx_loop(game->mlx);

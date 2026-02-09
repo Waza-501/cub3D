@@ -6,14 +6,14 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/20 14:28:34 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/04 10:01:20 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/09 15:29:54 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTER_H
 # define RAYCASTER_H
 
-typedef struct s_game_info t_game_info;
+typedef struct s_game_info	t_game_info;
 
 typedef struct s_vector
 {
@@ -49,7 +49,6 @@ typedef struct s_raycaster
 	t_vector	side_dist;
 	t_vector	delta_dist;
 }				t_raycaster;
-
 
 void		draw_line(t_game_info *game, t_raycaster *rays);
 void		raycaster(t_game_info *game);

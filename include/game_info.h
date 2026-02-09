@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/20 16:17:22 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/05 13:33:58 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/09 15:30:22 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,10 @@
 # include "cub3D.h"
 # include "raycaster.h"
 
-# define RGB_RED 0xFF0000FF
-# define RGB_GREEN 0x00FF00FF
-# define RGB_BLUE 0x0000FFFF
-# define RGB_ALPHA 0x000000FF
-# define RGB_YELLOW 0xFFFF00FF
 
-typedef struct	s_tex_data
-{	double			distance;
+typedef struct s_tex_data
+{
+	double			distance;
 	int				lineheight;
 	double			wall_x;
 	double			tex_step;
@@ -33,7 +29,7 @@ typedef struct	s_tex_data
 	mlx_texture_t	*wall;
 }					t_tex_data;
 
-typedef struct	s_textures
+typedef struct s_textures
 {
 	int				scale;
 	mlx_texture_t	*n_wall;
@@ -54,11 +50,11 @@ typedef struct s_game_info
 	t_tex_data		tex_data;
 }			t_game_info;
 
-
-int			configure_game(t_game_info *game, t_map *map, int spawn_x, int spawn_y);
+int			get_colour(mlx_texture_t *tex, int tex_y, int tex_x);
+int			configure_game(t_game_info *game, t_map *map,
+				int spawn_x, int spawn_y);
 t_game_info	*newgame(int width, int height);
 int			run_game(t_map *map);
-//int		demo_game(t_map *map);
 void		cleanup_game(t_game_info *game);
 
 #endif
