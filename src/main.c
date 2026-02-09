@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/15 13:44:04 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/01/26 14:12:43 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/09 09:50:40 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,48 +17,22 @@
 #include "arena.h"
 #include "libft.h"
 #include "game_info.h"
+#include "cub3D.h"
 
-// int	main(void)
-// {
-// 	t_arena			ptr;
-// 	char			*str1;
-// 	char			*str2;
-// 	unsigned char	*buf;
-// 	size_t			size;
-
-// 	size = 6;
-// 	arena_init(&ptr);
-
-// 	str1 = arena_alloc(&ptr, size);
-// 	// printf("%p\n", ptr.buffer);
-// 	memcpy(str1, "hello", size - 1);
-
-// 	str2 = arena_alloc(&ptr, size);
-// 	// printf("%p\n", ptr.buffer);
-// 	memcpy(str2, "world", size - 1);
-
-// 	buf = (unsigned char *)ptr.buffer;
-// 	// for (size_t i = 0; i < ptr.offset; i++)
-// 	// {
-// 	// 	printf("[%i]", buf[i]);
-// 	// }
-// 	// printf("\n");
-// 	// for (size_t i = 0; i < ptr.offset; i++)
-// 	// {
-// 	// 	printf("%c", buf[i]);
-// 	// }
-// 	// printf("\n%s%s\n", (char *)ptr.buffer, (char *)ptr.buffer + size);
-
-// 	arena_free(&ptr);
-
-// 	return (EXIT_SUCCESS);
-// }
-
-int	main(int argc, char **argv)
+int	main(int argc, char const *argv[])
 {
+	t_map	map;
+
 	if (argc != 2)
-		return (0);
-	if (!ft_strncmp(argv[1], "r", 1))
-		demo_game();
-	return (0);
+		return (EXIT_FAILURE);
+	ft_memset(&map, 0, sizeof(map));
+	arena_init(&map.arena);
+	if (map_parse(&map, argv[1]) == EXIT_FAILURE)
+	{
+		arena_destroy(&map.arena);
+		return (EXIT_FAILURE);
+	}
+	run_game(&map);
+	arena_destroy(&map.arena);
+	return (EXIT_SUCCESS);
 }

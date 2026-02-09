@@ -17,10 +17,19 @@ OBJDIR := obj/
 INCDIR := include/
 
 # Sources
-SRCS :=	arena_resize.c \
-		arena.c \
+SRCS :=	arena_calloc.c \
+		arena_destroy.c \
+		arena_init.c \
+		arena_malloc.c \
+		arena_split_collapse.c \
+		arena_split_preserve.c \
+		arena_strdup.c \
+		arena_strndup.c \
+		arena_strtrim.c \
 		ft_memcpy.c \
 		ft_memset.c \
+		ft_strchr.c \
+		ft_strlen.c \
 
 # Objects and Dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))
@@ -41,6 +50,7 @@ RESET	:= "\e[0m"
 $(OBJDIR)%.o: $(SRCDIR)%.c Makefile
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@echo $(BLUE)Compiling $@$(RESET)
 
 all: $(NAME)
 
