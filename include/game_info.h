@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/20 16:17:22 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/09 15:30:22 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/10 14:36:09 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <MLX42/MLX42.h>
 # include "cub3D.h"
 # include "raycaster.h"
-
 
 typedef struct s_tex_data
 {
