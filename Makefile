@@ -28,6 +28,7 @@ INCDIR := include/
 # Sources
 SRCS :=	main.c \
 		cub3D.c\
+		raycaster/digital_differential_analyser.c\
 		raycaster/draw_line.c\
 		raycaster/draw_utils.c\
 		raycaster/init_game.c\
