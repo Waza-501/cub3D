@@ -27,12 +27,12 @@ INCDIR := include/
 
 # Sources
 SRCS :=	main.c \
-		map_color.c \
-		map_matrix_enclosed.c \
-		map_matrix.c \
-		map_parse.c \
-		map_texture.c \
-		map_utils.c \
+		parsing/map_color.c \
+		parsing/map_matrix_enclosed.c \
+		parsing/map_matrix.c \
+		parsing/map_parse.c \
+		parsing/map_texture.c \
+		parsing/map_utils.c \
 
 # Objects and Dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))
