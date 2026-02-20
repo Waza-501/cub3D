@@ -6,17 +6,12 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/26 16:45:09 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/10 16:12:10 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/20 15:39:45 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_info.h"
 #include <stdlib.h>
-
-void	cleanup_rays(t_raycaster *data)
-{
-	free(data);
-}
 
 void	delete_image(mlx_texture_t *tex)
 {

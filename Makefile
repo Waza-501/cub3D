@@ -14,7 +14,7 @@ LIBRARIES :=	$(LIBFT)/libft.a \
 
 # Compiler and Flags
 CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		:= -Wall -Wextra -Werror -g
 CFLAGS		+= -MMD -MP -g
 MLX_FLAGS	:= -Iinclude -ldl -lglfw -pthread -lm
 MAKEFLAGS	+= --no-print-directory
