@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/20 14:28:34 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/10 14:36:01 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/20 15:32:53 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_dda_data
 /**
  * @brief Raycasting engine structure
  * 
- * @param m_rot Mouse rotation speed
  * @param k_rot Key rotation speed
  * @param pos Player position in the map
  * @param dir Direction vector the player is facing
@@ -49,7 +48,6 @@ typedef struct s_raycaster
 	int			map_y;
 	int			side;
 	double		m_speed;
-	double		m_rot;
 	double		k_rot;
 	t_vector	pos;
 	t_vector	dir;

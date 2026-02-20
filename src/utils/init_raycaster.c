@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/26 15:17:08 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/04 09:53:58 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/20 15:33:40 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	newraycaster(t_raycaster *new, int x, int y)
 	new->map_y = y;
 	new->side = 0;
 	new->m_speed = 0.03;
-	new->m_rot = 0.05;
 	new->k_rot = 0.05;
 	new->pos = newvector((double)x + 0.5, (double)y + 0.5);
 	new->dir = newvector(0, 0);

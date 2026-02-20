@@ -27,22 +27,21 @@ INCDIR := include/
 
 # Sources
 SRCS :=	main.c \
-		cub3D.c\
+		graphics/draw_line.c\
+		graphics/draw_utils.c\
+		movement/movement.c\
+		parsing/map_color.c \
+		parsing/map_matrix_enclosed.c \
+		parsing/map_matrix.c \
+		parsing/map_parse.c \
+		parsing/map_texture.c \
+		parsing/map_utils.c \
 		raycaster/digital_differential_analyser.c\
-		raycaster/draw_line.c\
-		raycaster/draw_utils.c\
-		raycaster/init_game.c\
-		raycaster/init_raycaster.c\
-		raycaster/movement.c\
 		raycaster/raycaster.c\
-		raycaster/utils.c\
-		raycaster/vector.c\
-		map_color.c \
-		map_matrix_enclosed.c \
-		map_matrix.c \
-		map_parse.c \
-		map_texture.c \
-		map_utils.c \
+		utils/init_game.c\
+		utils/init_raycaster.c\
+		utils/utils.c\
+		utils/vector.c\
 
 # Objects and Dependencies
 SRCPATH	:= $(addprefix $(SRCDIR),$(SRCS))

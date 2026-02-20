@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/20 16:17:22 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/10 14:36:09 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/20 15:33:59 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int			get_colour(mlx_texture_t *tex, int tex_y, int tex_x);
 int			configure_game(t_game_info *game, t_map *map,
 				int spawn_x, int spawn_y);
 t_game_info	*newgame(int width, int height);
-int			run_game(t_map *map);
 void		cleanup_game(t_game_info *game);
 
 #endif
