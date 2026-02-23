@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:08:15 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/29 18:26:40 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/02/23 11:40:16 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,10 @@ int	map_matrix_extract(t_map *map, char **content, int map_height)
 {
 	size_t	idx;
 
-	while (**content == '\0')
+	while (*content && **content == '\0')
 		content += 1;
+	if (*content == NULL)
+		return (EXIT_FAILURE);
 	if (ft_strspn(*content, " 1") != ft_strlen(*content))
 		return (EXIT_FAILURE);
 	map->matrix = arena_calloc(&map->arena, map_height, sizeof(char *));

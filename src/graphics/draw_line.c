@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   draw_line.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2026/01/30 14:43:55 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/23 09:43:00 by owhearn       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/30 14:43:55 by owhearn           #+#    #+#             */
+/*   Updated: 2026/02/23 12:07:54 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 
 /**
  * @brief Prepares texture mapping data for wall rendering
- * 
+ *
  * This function calculates the exact point where the ray hit the wall
  * (wall_x), determines which column of the texture to use (tex_x),
  * and sets up the texture stepping parameters for vertical scaling.
  * It handles texture coordinate clamping and adjusts for walls that
  * extend beyond screen boundaries.
- * 
+ *
  * @param game Pointer to the main game structure
  * @param data Pointer to texture data structure to be populated
  * @param start Starting vertical pixel position for rendering
- * 
+ *
  * @note wall_x represents the fractional position along the wall
  *       where the ray intersects (0.0 to 1.0)
  * @note tex_step determines how much to increment through the
@@ -52,17 +52,17 @@ void	prep_tex_data(t_game_info *game, t_tex_data *data, int start)
 
 /**
  * @brief Renders a vertical slice of textured wall
- * 
+ *
  * This function draws a vertical line of pixels from start to end,
  * sampling colors from the appropriate wall texture. It steps through
  * the texture vertically, mapping texture coordinates to screen
  * coordinates while handling texture clamping.
- * 
+ *
  * @param game Pointer to the main game structure containing texture
  *             and rendering data
  * @param start Top pixel position of the wall slice
  * @param end Bottom pixel position of the wall slice
- * 
+ *
  * @note Texture coordinates are clamped to prevent out-of-bounds
  *       access
  * @note Each pixel is drawn to the current ray's screen column
@@ -75,7 +75,7 @@ void	draw_textures(t_game_info *game, int start, int end)
 
 	prep_tex_data(game, &game->tex_data, start);
 	y = start;
-	while (y <= end)
+	while (y < end)
 	{
 		tex_y = (int)game->tex_data.tex_pos;
 		if (tex_y >= (int)game->tex_data.wall->height)
@@ -90,16 +90,16 @@ void	draw_textures(t_game_info *game, int start, int end)
 /**
  * @brief Renders a complete vertical screen column with ceiling,
  *        wall, and floor
- * 
+ *
  * This function draws one complete vertical slice of the screen,
  * filling the ceiling area above the wall, selecting and rendering
  * the appropriate wall texture based on ray direction and side hit,
  * and filling the floor area below the wall.
- * 
+ *
  * @param game Pointer to the main game structure
  * @param start Top pixel position where the wall begins
  * @param end Bottom pixel position where the wall ends
- * 
+ *
  * @note Wall texture selection depends on which side was hit (0 or 1)
  *       and the ray direction (positive or negative x/y)
  * @note Ceiling pixels are drawn from top to wall start
@@ -136,16 +136,16 @@ void	manipulate_image(t_game_info *game, int start, int end)
 
 /**
  * @brief Calculates wall height and renders the vertical screen slice
- * 
+ *
  * This function computes the perpendicular distance to the wall to
  * avoid fisheye distortion, calculates the wall's screen height based
  * on this distance, determines the vertical start and end positions,
  * and triggers the rendering of the complete column.
- * 
+ *
  * @param game Pointer to the main game structure
  * @param rays Pointer to the raycaster data containing distance and
  *             side information
- * 
+ *
  * @note Uses perpendicular distance (not Euclidean) to prevent
  *       fisheye effect
  * @note Wall height is inversely proportional to distance

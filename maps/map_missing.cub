@@ -1,0 +1,6 @@
+NO ./textures/WallpapergreenL.png
+WE ./textures/WoodbrickD.png
+F 220,120,50
+SO ./textures/WoodbrickL.png
+C 225,200,120
+EA ./textures/WallpapergreenSSD.png
