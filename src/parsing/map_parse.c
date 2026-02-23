@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:13:43 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/30 10:53:38 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/02/23 10:07:34 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,18 +100,18 @@ static int	map_type_copy(t_map *map, char *line, int idx)
  */
 static int	map_type_extract(t_map *map, char **cnt)
 {
-	const char	*type_ids[] = {S_NO, S_EA, S_SO, S_WE, S_F, S_C, NULL};
-	size_t		i;
-	size_t		id;
-	int			type_count;
+	const char		*type_ids[] = {S_NO, S_EA, S_SO, S_WE, S_F, S_C, NULL};
+	static size_t	i = 0;
+	static size_t	id = 0;
+	int				type_count;
 
-	i = 0;
-	id = 0;
 	type_count = 0;
 	while (type_count < 6)
 	{
-		while (*cnt[i] == '\0')
+		while (cnt[i] && *cnt[i] == '\0')
 			i += 1;
+		if (cnt[i] == NULL)
+			return (-1);
 		if (ft_strncmp(type_ids[id], cnt[i], ft_strlen(type_ids[id])) == 0)
 		{
 			if (map_type_copy(map, cnt[i++] + ft_strlen(type_ids[id]), id) == 1)
@@ -198,8 +198,7 @@ int	map_parse(t_map *map, const char *filename)
 	if (map_read(map, content, line_count) == EXIT_FAILURE)
 		return (arena_destroy(&arena), EXIT_FAILURE);
 	if (map_has_empty_variables(map) == true)
-		return (ft_putstr_fd("Map is missing data\n", STDERR_FILENO),
-			arena_destroy(&arena), EXIT_FAILURE);
+		return (arena_destroy(&arena), EXIT_FAILURE);
 	arena_destroy(&arena);
 	return (EXIT_SUCCESS);
 }

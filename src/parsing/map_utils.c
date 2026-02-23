@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 10:20:45 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/30 10:21:07 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/02/23 10:06:42 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ size_t	ft_strspn(const char *str, const char *accept)
  */
 bool	map_has_empty_variables(t_map *map)
 {
+	if (map->tex_north == NULL)
+		ft_putendl_fd("North Texture has missing/false data", STDERR_FILENO);
+	if (map->tex_east == NULL)
+		ft_putendl_fd("East Texture has missing/false data", STDERR_FILENO);
+	if (map->tex_south == NULL)
+		ft_putendl_fd("South Texture has missing/false data", STDERR_FILENO);
+	if (map->tex_west == NULL)
+		ft_putendl_fd("West Texture has missing/false data", STDERR_FILENO);
+	if (map->color_floor == 0)
+		ft_putendl_fd("Floor Color has missing/false data", STDERR_FILENO);
+	if (map->color_ceiling == 0)
+		ft_putendl_fd("Ceiling Color has missing/false data", STDERR_FILENO);
+	if (map->player.direction == NONE)
+		ft_putendl_fd("Player Missing", STDERR_FILENO);
 	if (map->tex_north == NULL
 		|| map->tex_east == NULL
 		|| map->tex_south == NULL
@@ -44,9 +58,7 @@ bool	map_has_empty_variables(t_map *map)
 		|| map->color_floor == 0
 		|| map->color_ceiling == 0
 		|| map->player.direction == NONE)
-	{
 		return (true);
-	}
 	return (false);
 }
 
