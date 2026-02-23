@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_texture.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 10:37:13 by dbakker           #+#    #+#             */
-/*   Updated: 2026/02/23 12:35:57 by dbakker          ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map_texture.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbakker <dbakker@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2026/01/30 10:37:13 by dbakker       #+#    #+#                 */
+/*   Updated: 2026/02/23 12:54:28 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static char	*map_type_copy_texture(t_map *map, char *line)
 	{
 		return (NULL);
 	}
+	if (!map_has_valid_extension(trim, "png"))
+		return (NULL);
 	fd = open(trim, O_RDONLY);
 	if (fd == -1)
 	{
