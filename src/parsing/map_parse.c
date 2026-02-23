@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:13:43 by dbakker           #+#    #+#             */
-/*   Updated: 2026/02/23 11:06:16 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/02/23 12:37:34 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static char	**map_store(t_arena *arena, const char *filename, int line_count)
  */
 static int	map_type_copy(t_map *map, char *line, int idx)
 {
-	if (map_type_copy_filepath1(map, line, idx) != EXIT_FAILURE
-		|| map_type_copy_filepath2(map, line, idx) != EXIT_FAILURE)
+	if (map_type_copy_filepath1(map, line, idx) != idx
+		|| map_type_copy_filepath2(map, line, idx) != idx)
 	{
 		return (EXIT_FAILURE);
 	}
