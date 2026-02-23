@@ -6,7 +6,7 @@
 /*   By: owhearn <owhearn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/01/30 14:43:55 by owhearn       #+#    #+#                 */
-/*   Updated: 2026/02/10 17:18:04 by owhearn       ########   odam.nl         */
+/*   Updated: 2026/02/23 09:43:00 by owhearn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,6 @@ void	draw_line(t_game_info *game, t_raycaster *rays)
 		start = 0;
 	end = game->tex_data.lineheight / 2 + game->height / 2;
 	if (end >= game->height)
-		end = game->height - 1;
+		end = game->height;
 	manipulate_image(game, start, end);
 }
