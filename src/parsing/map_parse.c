@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:13:43 by dbakker           #+#    #+#             */
-/*   Updated: 2026/02/23 10:07:34 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/02/23 11:06:16 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static char	**map_store(t_arena *arena, const char *filename, int line_count)
  */
 static int	map_type_copy(t_map *map, char *line, int idx)
 {
-	if (map_type_copy_filepath1(map, line, idx) != idx
-		|| map_type_copy_filepath2(map, line, idx) != idx)
+	if (map_type_copy_filepath1(map, line, idx) != EXIT_FAILURE
+		|| map_type_copy_filepath2(map, line, idx) != EXIT_FAILURE)
 	{
 		return (EXIT_FAILURE);
 	}
@@ -188,7 +188,7 @@ int	map_parse(t_map *map, const char *filename)
 
 	arena_init(&arena);
 	if (map_has_valid_extension(filename, MAP_EXTENSION) == false)
-		return (EXIT_FAILURE);
+		return (ft_putstr_fd("Invalid Argument\n", STDERR_FILENO), 1);
 	line_count = map_line_count(filename);
 	if (line_count == -1)
 		return (EXIT_FAILURE);

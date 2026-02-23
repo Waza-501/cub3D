@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 10:37:13 by dbakker           #+#    #+#             */
-/*   Updated: 2026/01/30 10:48:06 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/02/23 11:06:35 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static char	*map_type_copy_texture(t_map *map, char *line)
 	{
 		return (NULL);
 	}
+	if (map_has_valid_extension(trim, ".png") == false)
+		return (ft_putendl_fd("Invalid texture file", STDERR_FILENO), NULL);
 	fd = open(trim, O_RDONLY);
 	if (fd == -1)
 	{
@@ -57,7 +59,7 @@ int	map_type_copy_filepath1(t_map *map, char *line, int idx)
 			return (idx + NORTH);
 		map->tex_north = map_type_copy_texture(map, line);
 		if (map->tex_north == NULL)
-			return (idx + NORTH);
+			return (EXIT_FAILURE);
 	}
 	if (idx == EAST)
 	{
@@ -65,7 +67,7 @@ int	map_type_copy_filepath1(t_map *map, char *line, int idx)
 			return (idx + EAST);
 		map->tex_east = map_type_copy_texture(map, line);
 		if (map->tex_east == NULL)
-			return (idx + EAST);
+			return (EXIT_FAILURE);
 	}
 	return (idx);
 }
@@ -88,7 +90,7 @@ int	map_type_copy_filepath2(t_map *map, char *line, int idx)
 			return (idx + SOUTH);
 		map->tex_south = map_type_copy_texture(map, line);
 		if (map->tex_south == NULL)
-			return (idx + SOUTH);
+			return (EXIT_FAILURE);
 	}
 	if (idx == WEST)
 	{
@@ -96,7 +98,7 @@ int	map_type_copy_filepath2(t_map *map, char *line, int idx)
 			return (idx + WEST);
 		map->tex_west = map_type_copy_texture(map, line);
 		if (map->tex_west == NULL)
-			return (idx + WEST);
+			return (EXIT_FAILURE);
 	}
 	return (idx);
 }

@@ -6,7 +6,7 @@
 /*   By: dbakker <dbakker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 10:20:45 by dbakker           #+#    #+#             */
-/*   Updated: 2026/02/23 10:06:42 by dbakker          ###   ########.fr       */
+/*   Updated: 2026/02/23 10:57:37 by dbakker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ bool	map_has_valid_extension(const char *filename, const char *extension)
 	{
 		return (true);
 	}
-	ft_putstr_fd("Not a valid extension\n", STDERR_FILENO);
 	return (false);
 }
 
